@@ -1,5 +1,8 @@
 package depth_first_search;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 根据一棵树的前序遍历与中序遍历构造二叉树。
  *
@@ -31,49 +34,44 @@ public class BuildTree_105 {
     因为已经限定了不会出现重复元素，所以降低了难度。
      */
     public TreeNode buildTree(int[] preorder, int[] inorder) {
-        return fun1(preorder,0,inorder,0,preorder.length - 1);
+        for (int i = 0;i < inorder.length;i++) {
+            inOrderIndexMap.put(inorder[i],i);
+        }
+        return fun1(preorder,inorder,0,preorder.length - 1);
     }
 
+    private int preIndex = -1;
+    // key:中序遍历值 value:中序序列
+    private Map<Integer,Integer> inOrderIndexMap = new HashMap<>();
     /**
      *
      * @param preorder 前序
-     * @param cur 当前遍历到的前序节点位置
      * @param inorder 中序
      * @param left 中序最左范围
      * @param right 中序最右位置
      * @return
      */
-    TreeNode fun1(int[] preorder,int cur,int[] inorder,int left,int right) {
-        if (left == right) {
-            return new TreeNode(preorder[cur]);
-        } else if (left < right) {
+    TreeNode fun1(int[] preorder,int[] inorder,int left,int right) {
+        if (preIndex >= preorder.length) {
+            return null;
+        }
+        if (left > right) {
             return null;
         }
 
-        TreeNode curNode = new TreeNode(preorder[cur]);
-        int inOrderIndex = getInOrderIndex(inorder,left,right,preorder[cur]);
-        if (inOrderIndex == -1) {
-            return curNode;
+        preIndex++;
+
+        if (left == right) {
+            return new TreeNode(preorder[preIndex]);
         }
-        curNode.left = fun1(preorder,)
 
+        TreeNode curNode = new TreeNode(preorder[preIndex]);
+        int inOrderIndex = inOrderIndexMap.get(preorder[preIndex]);
+        curNode.left = fun1(preorder,inorder,left,inOrderIndex - 1);
+        curNode.right = fun1(preorder,inorder,inOrderIndex + 1,right);
 
-
+        return curNode;
     }
-
-    private int getInOrderIndex(int[] inorder,int val,int left,int right) {
-        for (int i = left;i <= right;i++) {
-            if (val == inorder[i]) {
-                return i;
-            }
-        }
-        // 错误
-        return -1;
-    }
-
-
-
-
 
 
     class TreeNode {
