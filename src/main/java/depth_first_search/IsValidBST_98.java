@@ -52,7 +52,8 @@ public class IsValidBST_98 {
     Stack<Integer> upperStack = new Stack<>();
 
     /**
-     * 非递归实现：前序遍历
+     * 非递归实现：层序遍历
+     *
      * @return
      */
     boolean fun2(TreeNode root) {
@@ -63,11 +64,25 @@ public class IsValidBST_98 {
             Integer lower = lowerStack.pop();
             Integer upper = upperStack.pop();
             if (cur == null) continue;
-            if (lower != null && cur.val)
+            if (lower != null && cur.val <= lower) {
+                return false;
+            }
+            if (upper != null && cur.val >= upper) {
+                return false;
+            }
+            if (cur.left != null) {
+                nodeStack.add(cur.left);
+                lowerStack.add(lower);
+                upperStack.add(cur.val);
+            }
+            if (cur.right != null) {
+                nodeStack.add(cur.right);
+                lowerStack.add(cur.val);
+                upperStack.add(upper);
+            }
         }
 
-
-
+        return true;
     }
 
     private void update2(TreeNode cur, Integer lower, Integer upper) {
