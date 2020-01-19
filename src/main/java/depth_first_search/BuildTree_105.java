@@ -1,5 +1,7 @@
 package depth_first_search;
 
+import depth_first_search.common.TreeNode;
+
 import java.util.HashMap;
 import java.util.Map;
 

@@ -36,9 +36,10 @@ import java.util.Stack;
  *
  * 输出: false
  */
-public class SameTree {
+public class SameBinaryTree_100 {
     /**
      * 递归深度优先搜索
+     *
      * @param p
      * @param q
      * @return

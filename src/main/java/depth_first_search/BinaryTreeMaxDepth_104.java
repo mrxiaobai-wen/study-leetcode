@@ -26,7 +26,7 @@ import java.util.List;
  * 链接：https://leetcode-cn.com/problems/maximum-depth-of-binary-tree
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
-public class MaxDepth {
+public class BinaryTreeMaxDepth_104 {
     public int maxDepth(TreeNode root) {
         //递归实现
         return fun1(root);

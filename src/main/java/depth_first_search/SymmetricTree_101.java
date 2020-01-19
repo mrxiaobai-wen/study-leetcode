@@ -28,7 +28,7 @@ import java.util.concurrent.LinkedBlockingQueue;
  *
  * 如果你可以运用递归和迭代两种方法解决这个问题，会很加分。
  */
-public class SymmetricTree {
+public class SymmetricTree_101 {
 
     public boolean isSymmetric(TreeNode root) {
         return fun1(root);
