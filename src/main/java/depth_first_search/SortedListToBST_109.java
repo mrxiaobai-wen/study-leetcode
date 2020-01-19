@@ -23,7 +23,54 @@ package depth_first_search;
  */
 public class SortedListToBST_109 {
     public TreeNode sortedListToBST(ListNode head) {
-        return null;
+        // 参考点一：快慢指针
+        return fun1(head);
+    }
+
+
+    /**
+     * 递归实现：使用快慢指针
+     *
+     * @param sourceList
+     * @return
+     */
+    private TreeNode fun1(ListNode sourceList) {
+        if (sourceList == null) {
+            return null;
+        }
+        ListNode midNode = mideList(sourceList);
+        if (midNode == null) {
+            return null;
+        }
+        TreeNode resultNode = new TreeNode(midNode.val);
+        if (sourceList == midNode) {
+            return resultNode;
+        }
+
+        resultNode.left = fun1(sourceList);
+        resultNode.right = fun1(midNode.next);
+
+        return resultNode;
+    }
+
+    /**
+     * 使用快慢指针寻找中间节点
+     *
+     * @param sourceList
+     * @return
+     */
+    private ListNode mideList(ListNode sourceList) {
+        ListNode pre, fastPtr, lowPtr;
+        pre = fastPtr = lowPtr = sourceList;
+        while (fastPtr != null && fastPtr.next != null) {
+            pre = lowPtr;
+            lowPtr = lowPtr.next;
+            fastPtr = fastPtr.next.next;
+        }
+        if (pre != null) {
+            pre.next = null;
+        }
+        return lowPtr;
     }
 
 
