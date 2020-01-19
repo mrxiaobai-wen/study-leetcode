@@ -72,11 +72,4 @@ public class BuildTree_105 {
 
         return curNode;
     }
-
-
-    class TreeNode {
-        int val;
-        TreeNode left;TreeNode right;
-        TreeNode(int x) { val = x; }
-    }
 }
