@@ -25,6 +25,9 @@ public class SortedListToBST_109 {
     public TreeNode sortedListToBST(ListNode head) {
         // 参考点一：快慢指针
         return fun1(head);
+        // 参考上面，将链表转成数组，使用二分查找。空间换时间
+        // .........................
+
     }
 
 
