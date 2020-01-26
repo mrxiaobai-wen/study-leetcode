@@ -1,7 +1,5 @@
 package depth_first_search;
 
-import depth_first_search.common.TreeNode;
-
 import java.util.ArrayList;
 import java.util.List;
 

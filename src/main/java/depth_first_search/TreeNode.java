@@ -1,4 +1,4 @@
-package depth_first_search.common;
+package depth_first_search;
 
 public class TreeNode {
     int val;
