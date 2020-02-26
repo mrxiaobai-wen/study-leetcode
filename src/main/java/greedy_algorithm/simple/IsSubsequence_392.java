@@ -77,7 +77,12 @@ public class IsSubsequence_392 {
         return false;*/
         // 因为回退导致执行超时
         // 因为子序列并不要求是连续分布在目标串中的。所以对目标串的搜寻不需要回退。
+
         // 参考代码
+        /*
+        贪心思想：每次只判断S中的当前字符是否在T中存在，如果存在，那么从S当前字符在T中的匹配位置之后，继续匹配
+        S剩下的字符是否在T中匹配。
+         */
         int i = 0, j = 0;
         while (i < s.length() && j < t.length()) {
             while (j < t.length() && s.charAt(i) != t.charAt(j)) {
