@@ -38,8 +38,6 @@ import java.util.Arrays;
 public class FindContentChildren_455 {
     public int findContentChildren(int[] g, int[] s) {
         return fun1(g, s);
-
-        //todo 参考其他答案
     }
 
     /**
