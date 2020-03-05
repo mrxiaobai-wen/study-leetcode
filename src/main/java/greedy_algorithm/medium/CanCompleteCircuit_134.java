@@ -69,4 +69,26 @@ public class CanCompleteCircuit_134 {
         }
         return -1;
     }
+
+    /**
+     * 参考：时间复杂度O(n)
+     *
+     * @param gas
+     * @param cost
+     * @return
+     */
+    private int fun1(int[] gas, int[] cost) {
+        int totalTank = 0;
+        int curTank = 0;
+        int start = 0;
+        for (int i = 0; i < cost.length; i++) {
+            totalTank += gas[i] - cost[i];
+            curTank += gas[i] - cost[i];
+            if (curTank < 0) {
+                start = i + 1;
+                curTank = 0;
+            }
+        }
+        return totalTank >= 0 ? start : -1;
+    }
 }
