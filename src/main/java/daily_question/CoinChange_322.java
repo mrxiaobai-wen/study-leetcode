@@ -22,12 +22,20 @@ import java.util.Arrays;
  */
 public class CoinChange_322 {
 
+    @Test
+    public void test() {
+        coinChange(new int[]{2}, 3);
+    }
+
     public int coinChange(int[] coins, int amount) {
         // 这道题贪心算法是行不通的！！！
         //return fun1(coins,amount);
 
         // 动态规划，自顶向下
-        return fun2(coins, amount, new int[amount]);
+        //return fun2(coins, amount, new int[amount]);
+
+        // 动态规划，自下向上
+        return fun3(coins, amount);
     }
 
     /**
@@ -92,5 +100,30 @@ public class CoinChange_322 {
         }
         count[amount - 1] = min == Integer.MAX_VALUE ? -1 : min;
         return count[amount - 1];
+    }
+
+    /**
+     * 参考代码：
+     * 思想：动态规划——自下而上
+     *
+     * @param coins
+     * @param amout
+     * @return
+     */
+    private int fun3(int[] coins, int amout) {
+        int[] dp = new int[amout + 1];
+        //Arrays.fill(dp,Integer.MAX_VALUE);
+        Arrays.fill(dp, amout + 1);
+        dp[0] = 0;
+        for (int i = 1; i <= amout; i++) {
+            for (int j = 0; j < coins.length; j++) {
+                if (i - coins[j] >= 0) {
+                    // 上面如果填充最大值，那么下面在+1则会超出范围
+                    dp[i] = Math.min(dp[i], dp[i - coins[j]] + 1);
+                }
+            }
+        }
+        //return dp[amout] == Integer.MAX_VALUE ? -1 : dp[amout];
+        return dp[amout] > amout ? -1 : dp[amout];
     }
 }
