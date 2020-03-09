@@ -48,4 +48,24 @@ public class MaxProfit_121 {
         }
         return maxProfit;
     }
+
+    /**
+     * 参考代码：
+     * 一次遍历！！！
+     *
+     * @param prices
+     * @return
+     */
+    private int fun2(int[] prices) {
+        int min = Integer.MAX_VALUE;
+        int maxProfit = 0;
+        for (int i = 0; i < prices.length; i++) {
+            if (min > prices[i]) {
+                min = prices[i];
+            } else {
+                maxProfit = Math.max(maxProfit, prices[i] - min);
+            }
+        }
+        return maxProfit;
+    }
 }
