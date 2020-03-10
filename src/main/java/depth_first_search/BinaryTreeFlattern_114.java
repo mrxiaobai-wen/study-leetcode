@@ -1,5 +1,7 @@
 package depth_first_search;
 
+import common.TreeNode;
+
 /**
  * 给定一个二叉树，原地将它展开为链表。
  * <p>
