@@ -51,6 +51,10 @@ import java.util.List;
 public class NumOfBurgers_1276 {
     public List<Integer> numOfBurgers(int tomatoSlices, int cheeseSlices) {
         return fun(tomatoSlices, cheeseSlices);
+
+        /*
+        简单解法：二元一次方程
+         */
     }
 
     /**
