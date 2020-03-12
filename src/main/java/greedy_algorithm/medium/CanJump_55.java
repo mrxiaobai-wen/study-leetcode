@@ -78,4 +78,16 @@ public class CanJump_55 {
         }
         return false;
     }
+
+    // todo 执行最快用时参考
+    /*
+    public boolean canJump(int[] nums) {
+		 int stride = 0;
+		 for(int i=0;i<nums.length-1;i++){
+			 stride = Math.max(stride-1, nums[i]);
+			 if(stride == 0) return false;
+		 }
+		 return true;
+	 }
+     */
 }
