@@ -24,7 +24,7 @@ package breadth_first_search;
  * 链接：https://leetcode-cn.com/problems/minimum-depth-of-binary-tree
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
-public class MinDepth_1111 {
+public class MinDepth_111 {
     /**
      * Definition for a binary tree node.
      * public class TreeNode {
