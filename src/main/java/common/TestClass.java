@@ -1,5 +1,6 @@
 package common;
 
+import daily_question.LRUCache;
 import dynamic_programming.medium.NumMatrix;
 import org.junit.Test;
 
@@ -18,5 +19,19 @@ public class TestClass {
         System.out.println(test.sumRegion(2, 1, 4, 3));
         System.out.println(test.sumRegion(1, 1, 2, 2));
         System.out.println(test.sumRegion(1, 2, 2, 4));
+    }
+
+    @Test
+    public void testLRUCache() {
+        LRUCache cache = new LRUCache( 2 );
+        cache.put(1,1);
+        cache.put(2,2);
+        assert cache.get(1) == 1;       // 返回  1
+        cache.put(3,3);    // 该操作会使得密钥 2 作废
+        assert cache.get(2) == -1;       // 返回 -1 (未找到)
+        cache.put(4,4);    // 该操作会使得密钥 1 作废
+        assert cache.get(1) == -1;       // 返回 -1 (未找到)
+        assert cache.get(3) == 3;       // 返回  3
+        assert cache.get(4) == 4;       // 返回  4
     }
 }
