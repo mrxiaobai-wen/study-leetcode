@@ -44,6 +44,7 @@ public class MaxLengthRepeatedSubarray_718 {
         int n = B.length;
         int[][] dp = new int[m + 1][n + 1];
         int res = Integer.MIN_VALUE;
+        // 由右下角往左上角执行
         for (int i = m - 1;i >= 0;i--) {
             for (int j = n - 1;j >= 0;j--) {
                 dp[i][j] = A[i] == B[j] ? dp[i + 1][j + 1] + 1 : 0;
