@@ -1,4 +1,4 @@
-package tow_pointers.simple;
+package two_pointers.simple;
 
 /**
  * 977. 有序数组的平方

@@ -1,4 +1,4 @@
-package tow_pointers.simple;
+package two_pointers.simple;
 
 /**
  * 344. 反转字符串

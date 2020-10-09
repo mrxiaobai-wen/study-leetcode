@@ -1,6 +1,5 @@
-package tow_pointers.simple;
+package two_pointers.simple;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Arrays;

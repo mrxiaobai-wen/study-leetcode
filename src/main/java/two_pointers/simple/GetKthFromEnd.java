@@ -1,4 +1,4 @@
-package tow_pointers.simple;
+package two_pointers.simple;
 
 /**
  * 剑指 Offer 22. 链表中倒数第k个节点

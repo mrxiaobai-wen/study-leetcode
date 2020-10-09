@@ -1,4 +1,4 @@
-package tow_pointers.simple;
+package two_pointers.simple;
 
 import java.util.HashSet;
 import java.util.Set;

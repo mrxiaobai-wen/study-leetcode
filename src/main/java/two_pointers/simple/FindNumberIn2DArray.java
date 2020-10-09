@@ -1,4 +1,4 @@
-package tow_pointers.simple;
+package two_pointers.simple;
 
 /**
  * 剑指 Offer 04. 二维数组中的查找

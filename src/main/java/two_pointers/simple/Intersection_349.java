@@ -1,4 +1,4 @@
-package tow_pointers.simple;
+package two_pointers.simple;
 
 import java.util.ArrayList;
 import java.util.List;
