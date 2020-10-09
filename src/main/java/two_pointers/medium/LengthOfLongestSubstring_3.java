@@ -43,6 +43,36 @@ public class LengthOfLongestSubstring_3 {
         return fun(s);
     }
 
+    /**
+     * 滑动窗口
+     */
+    private int fun2(String str) {
+        if (str == null || str.length() == 0) {
+            return 0;
+        } else if (str.length() == 1) {
+            return 1;
+        }
+        char[] arr = str.toCharArray();
+        int result = 0;
+        int len = arr.length;
+        int right = -1;
+        Set<Character> set = new HashSet<>();
+        for (int i = 0;i < len;i++) {
+            if (i != 0) {
+                // 左指针向右移动一格，移除一个字符
+                set.remove(arr[i - 1]);
+            }
+            while (right + 1 < len && !set.contains(arr[right + 1])) {
+                // 不断右移右指针
+                set.add(arr[right + 1]);
+                right++;
+            }
+            // 第i到right个字符是一个机场的无重复字符子串
+            result = Math.max(result,set.size());
+        }
+        return result;
+    }
+
     private int fun(String str) {
         if (str == null || str.length() == 0) {
             return 0;
