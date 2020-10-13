@@ -47,11 +47,31 @@ public class DetectCycle_142 {
 
     /**
      * 进阶：常量额外空间
+     * https://leetcode-cn.com/problems/linked-list-cycle-ii/solution/huan-xing-lian-biao-ii-by-leetcode-solution/
      */
     private ListNode fun2(ListNode head) {
-        // todo 官方题解快慢指针
-
-
+        if (head == null) {
+            return null;
+        }
+        ListNode fast = head;
+        ListNode slow = head;
+        while(fast != null) {
+            slow = slow.next;
+            if (fast.next != null) {
+                fast = fast.next.next;
+            } else {
+                return null;
+            }
+            if (slow == fast) {
+                ListNode ptr = head;
+                while(ptr != slow) {
+                    ptr = ptr.next;
+                    slow = slow.next;
+                }
+                return ptr;
+            }
+        }
+        return null;
     }
 
     private ListNode fun1(ListNode head) {
