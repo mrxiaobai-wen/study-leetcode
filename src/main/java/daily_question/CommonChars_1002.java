@@ -45,16 +45,24 @@ public class CommonChars_1002 {
 
     public List<String> commonChars(String[] A) {
         int[] arr = new int[26];
-        List<String> list = new ArrayList<>();
-        for (String str : A) {
-            for (char tempChar : str.toCharArray()) {
-                arr[tempChar - 'a'] += 1;
-                if (arr[tempChar - 'a'] == 3) {
-                    list.add(tempChar + "");
-                    arr[tempChar - 'a'] = 0;
-                }
+        for (char temp : A[0].toCharArray()) {
+            arr[temp - 'a']++;
+        }
+        for (int i = 1;i < A.length;i++) {
+            int[] temp = new int[26];
+            for (char tempChar : A[i].toCharArray()) {
+                temp[tempChar - 'a']++;
+            }
+            for (int j = 0;j < 26;j++) {
+                arr[j] = Math.min(temp[j],arr[j]);
             }
         }
-        return list;
+        List<String> result = new ArrayList<>();
+        for (int i = 0;i < 26;i++) {
+            for (int j = 1;j <= arr[i];j++) {
+                result.add("" + (char)('a' + i));
+            }
+        }
+        return result;
     }
 }
