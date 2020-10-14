@@ -34,15 +34,59 @@ public class SortColors_75 {
         fun(nums);
     }
 
+    /**
+     * 荷兰国旗问题
+     */
     public void sortColors(int[] nums) {
-        fun(nums);
+        //fun(nums);
+        //fun2(nums);
+        fun3(nums);
+    }
+
+    private void fun3(int[] nums) {
+        int len = nums.length;
+        int p0 = 0,p2 = len - 0;
+        for (int i = 0;i <= p2;i++) {
+            while (i <= p2 && nums[i] == 2) {
+                int temp = nums[p2];
+                nums[p2] = nums[i];
+                nums[i] = temp;
+                p2--;
+            }
+            if (nums[i] == 0) {
+                int temp = nums[p0];
+                nums[p0] = nums[i];
+                nums[i] = temp;
+                p0++;
+            }
+        }
     }
 
     /**
-     * 进阶：常量空间，一遍扫描
+     * 进阶：常量空间，一遍扫描，双指针
+     * https://leetcode-cn.com/problems/sort-colors/solution/yan-se-fen-lei-by-leetcode-solution/
      */
     private void fun2(int[] nums) {
-
+        int p0 = 0,p1 = 0;
+        for (int i = 0;i < nums.length;i++) {
+            if (nums[i] == 1) {
+                int temp = nums[p1];
+                nums[p1] = 1;
+                nums[i] = temp;
+                p1++;
+            } else if (nums[i] == 0) {
+                int temp = nums[p0];
+                nums[p0] = nums[i];
+                nums[i] = temp;
+                if (p0 < p1) {
+                    int temp1 = nums[i];
+                    nums[i] = nums[p1];
+                    nums[p1] = temp1;
+                }
+                p0++;
+                p1++;
+            }
+        }
     }
 
     private void fun(int[] nums) {
