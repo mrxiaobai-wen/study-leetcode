@@ -8,6 +8,8 @@ import java.util.Queue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 /**
+ * 116. 填充每个节点的下一个右侧节点指针
+ *
  * 给定一个完美二叉树，其所有叶子节点都在同一层，每个父节点都有两个子节点。二叉树定义如下：
  * <p>
  * struct Node {
@@ -107,9 +109,8 @@ public class TreeConnect_116 {
 
     /**
      * 参考简洁代码
-     *
-     * @param root
-     * @return
+     * </p>
+     * 进阶：常量级额外空间
      */
     private Node fun3(Node root) {
         /**
@@ -133,17 +134,16 @@ public class TreeConnect_116 {
             return null;
         }
         Node pre = root;
-        Node cur = null;
         while (pre.left != null) {
-            cur = pre;
+            Node cur = pre;
             while (cur != null) {
                 cur.left.next = cur.right;
                 if (cur.next != null) {
                     cur.right.next = cur.next.left;
-                    cur = cur.next;
                 }
-                pre = pre.next;
+                cur = cur.next;
             }
+            pre = pre.left;
         }
 
         return root;
