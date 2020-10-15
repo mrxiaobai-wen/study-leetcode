@@ -19,4 +19,19 @@ public class ListNode {
         }
         return result;
     }
+
+    public static ListNode createList(int[] arr) {
+        ListNode result = null;
+        ListNode cur = null;
+        for (int i = 0;i < arr.length;i++) {
+            ListNode temp = new ListNode(arr[i]);
+            if (result == null) {
+                result = cur = temp;
+            } else {
+                cur.next = temp;
+                cur = cur.next;
+            }
+        }
+        return result;
+    }
 }
