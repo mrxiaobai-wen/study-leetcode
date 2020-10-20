@@ -62,6 +62,8 @@ public class CircularArrayLoop_457 {
 
     public boolean circularArrayLoop(int[] nums) {
         return fun(nums);
+
+        // todo 空间复杂度为O(1)的情况：将访问过的节点置为0
     }
 
     private boolean fun(int[] nums) {
@@ -108,7 +110,6 @@ public class CircularArrayLoop_457 {
                     return true;
                 }
             }
-
         }
         return false;
     }
