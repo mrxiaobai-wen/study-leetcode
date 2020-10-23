@@ -45,7 +45,45 @@ public class IsPalindrome_234 {
     }
 
     public boolean isPalindrome(ListNode head) {
-        return fun(head);
+        //return fun(head);
+        return fun2(head);
+    }
+
+    /**
+     * O（n）时间复杂度，O（1）的空间复杂度
+     */
+    private boolean fun2(ListNode head) {
+        if (head == null || head.next == null) {
+            return true;
+        }
+        ListNode fast = head,slow = head;
+        while (fast.next != null && fast.next.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        if (fast.next != null) {
+            fast = fast.next;
+        }
+        // 切割前后两个链表
+        ListNode slowPre = slow;
+        slow = slow.next;
+        slowPre.next = null;
+        // 翻转后半链表
+        ListNode second = null;
+        while (slow != null) {
+            ListNode temp = slow;
+            slow = slow.next;
+            temp.next = second;
+            second = temp;
+        }
+        while (head != null && second != null) {
+            if (head.val != second.val) {
+                return false;
+            }
+            head = head.next;
+            second = second.next;
+        }
+        return true;
     }
 
     private boolean fun(ListNode head) {
