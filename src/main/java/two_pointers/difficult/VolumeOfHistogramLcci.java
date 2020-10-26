@@ -23,11 +23,38 @@ public class VolumeOfHistogramLcci {
 
     @Test
     public void test() {
+        Assert.assertEquals(2,trap(new int[]{2,0,2}));
         Assert.assertEquals(6,trap(new int[]{0,1,0,2,1,0,1,3,2,1,2,1}));
     }
 
     public int trap(int[] height) {
-        return fun(height);
+        //return fun(height);
+        return fun2(height);
+    }
+
+    /**
+     * 动态规划
+     */
+    private int fun2(int[] height) {
+        if (height == null || height.length <= 2) {
+            return 0;
+        }
+        int len = height.length;
+        int[] rightMax = new int[len];
+        rightMax[len - 1] = height[len - 1];
+        for (int j = len - 2;j >= 0;j--) {
+            rightMax[j] = Math.max(rightMax[j + 1],height[j]);
+        }
+        int leftMax = 0;
+        int result = 0;
+        for (int i = 1;i < height.length - 1;i++) {
+            leftMax = Math.max(leftMax,height[i - 1]);
+            int temp = Math.min(leftMax,rightMax[i]);
+            if (temp > height[i]) {
+                result += temp - height[i];
+            }
+        }
+        return result;
     }
 
     /**
