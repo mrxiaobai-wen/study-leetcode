@@ -105,6 +105,7 @@ public class NumSubarraysWithSum_930 {
     private int fun1(int[] a,int s) {
         int count = 0;
         List<Integer> list = new ArrayList<>();
+        // 头尾添加两个哨兵，降低边界值处理复杂度
         list.add(-1);
         for (int i = 0;i < a.length;i++) {
             if (a[i] == 1) {
@@ -112,6 +113,7 @@ public class NumSubarraysWithSum_930 {
                 list.add(i);
             }
         }
+        // 头尾添加两个哨兵，降低边界值处理复杂度
         list.add(a.length);
         if (count < s) {
             return 0;
