@@ -6,19 +6,19 @@ import org.junit.Test;
 /**
  * 738. 单调递增的数字
  * 给定一个非负整数 N，找出小于或等于 N 的最大的整数，同时这个整数需要满足其各个位数上的数字是单调递增。
- *
+ * <p>
  * （当且仅当每个相邻位数上的数字 x 和 y 满足 x <= y 时，我们称这个整数是单调递增的。）
- *
+ * <p>
  * 示例 1:
- *
+ * <p>
  * 输入: N = 10
  * 输出: 9
  * 示例 2:
- *
+ * <p>
  * 输入: N = 1234
  * 输出: 1234
  * 示例 3:
- *
+ * <p>
  * 输入: N = 332
  * 输出: 299
  * 说明: N 是在 [0, 10^9] 范围内的一个整数。
@@ -27,11 +27,11 @@ public class MonotoneIncreasingDigits_738 {
 
     @Test
     public void test() {
-        Assert.assertEquals(123399,monotoneIncreasingDigits(123417));
-        Assert.assertEquals(12339,monotoneIncreasingDigits(12341));
-        Assert.assertEquals(9,monotoneIncreasingDigits(10));
-        Assert.assertEquals(1234,monotoneIncreasingDigits(1234));
-        Assert.assertEquals(299,monotoneIncreasingDigits(332));
+        Assert.assertEquals(123399, monotoneIncreasingDigits(123417));
+        Assert.assertEquals(12339, monotoneIncreasingDigits(12341));
+        Assert.assertEquals(9, monotoneIncreasingDigits(10));
+        Assert.assertEquals(1234, monotoneIncreasingDigits(1234));
+        Assert.assertEquals(299, monotoneIncreasingDigits(332));
     }
 
     public int monotoneIncreasingDigits(int N) {
@@ -55,7 +55,7 @@ public class MonotoneIncreasingDigits_738 {
         // 悬崖点减一后，往前寻找悬崖点
         while (0 < i && i < len && arr[i - 1] > arr[i]) arr[--i]--;
         // 此时的i如果有效，那么刚好处于悬崖点上
-        for (int j = i + 1;j < len;j++) {
+        for (int j = i + 1; j < len; j++) {
             // 悬崖后面统一填充9
             arr[j] = '9';
         }
@@ -69,11 +69,12 @@ public class MonotoneIncreasingDigits_738 {
         String str = String.valueOf(num);
         String result = "";
         int len = str.length();
-        search:for (int i = 0;i < len;i++) {
-            for (char d = '1';d <= '9';d++) {
-                String temp = result + repeat(d,len - i);
+        search:
+        for (int i = 0; i < len; i++) {
+            for (char d = '1'; d <= '9'; d++) {
+                String temp = result + repeat(d, len - i);
                 if (str.compareTo(temp) < 0) {
-                    result += (char)(d - 1);
+                    result += (char) (d - 1);
                     continue search;
                 }
             }
@@ -82,9 +83,9 @@ public class MonotoneIncreasingDigits_738 {
         return Integer.parseInt(result);
     }
 
-    private String repeat(char c,int count) {
+    private String repeat(char c, int count) {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0;i < count;i++) {
+        for (int i = 0; i < count; i++) {
             sb.append(c);
         }
         return sb.toString();
@@ -92,11 +93,12 @@ public class MonotoneIncreasingDigits_738 {
 
     /**
      * 暴力搜索   -- 执行超时
+     *
      * @param num
      * @return
      */
     private int fun(int num) {
-        for (int i = num;i >= 1;i--) {
+        for (int i = num; i >= 1; i--) {
             int pre = Integer.MAX_VALUE;
             int temp = i;
             boolean flag = true;

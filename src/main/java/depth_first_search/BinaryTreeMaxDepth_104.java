@@ -35,6 +35,7 @@ public class BinaryTreeMaxDepth_104 {
     /**
      * 方法一：采用递归实现
      * 思路：以当前节点出发，选择左右子树中最大深度值加上当前节点，即是以该节点为跟节点的最大深度
+     *
      * @param root
      * @return
      */
@@ -45,12 +46,13 @@ public class BinaryTreeMaxDepth_104 {
         if (root.left == null && root.right == null) {
             return 1;
         }
-        return Integer.max(fun1(root.left),fun1(root.right)) + 1;
+        return Integer.max(fun1(root.left), fun1(root.right)) + 1;
     }
 
     /**
      * 方法二：采用非递归实现
      * 思路：一层一层往下淘汰，直到最后就是最大层级
+     *
      * @param root
      * @return
      */
@@ -62,11 +64,11 @@ public class BinaryTreeMaxDepth_104 {
         List<TreeNode> nextList = new ArrayList<>();
         currentList.add(root);
         int level = 0;
-        while(true) {
+        while (true) {
             if (currentList.isEmpty())
                 break;
             level++;
-            while(!currentList.isEmpty()) {
+            while (!currentList.isEmpty()) {
                 TreeNode node = currentList.remove(0);
                 if (node.left != null) {
                     nextList.add(node.left);

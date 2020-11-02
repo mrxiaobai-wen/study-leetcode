@@ -10,9 +10,9 @@ public class ListNode {
         next = null;
     }
 
-    public static ListNode createList(int start,int end) {
+    public static ListNode createList(int start, int end) {
         ListNode result = null;
-        for (int i = end;i >= start;i--) {
+        for (int i = end; i >= start; i--) {
             ListNode cur = new ListNode(i);
             cur.next = result;
             result = cur;
@@ -23,7 +23,7 @@ public class ListNode {
     public static ListNode createList(int[] arr) {
         ListNode result = null;
         ListNode cur = null;
-        for (int i = 0;i < arr.length;i++) {
+        for (int i = 0; i < arr.length; i++) {
             ListNode temp = new ListNode(arr[i]);
             if (result == null) {
                 result = cur = temp;

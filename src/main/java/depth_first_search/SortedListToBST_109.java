@@ -13,11 +13,11 @@ import common.TreeNode;
  * <p>
  * 一个可能的答案是：[0, -3, 9, -10, null, 5], 它可以表示下面这个高度平衡二叉搜索树：
  * <p>
- *   0
- *  /  \
+ * 0
+ * /  \
  * -3   9
  * /   /
- *-10 5
+ * -10 5
  * <p>
  * 来源：力扣（LeetCode）
  * 链接：https://leetcode-cn.com/problems/convert-sorted-list-to-binary-search-tree

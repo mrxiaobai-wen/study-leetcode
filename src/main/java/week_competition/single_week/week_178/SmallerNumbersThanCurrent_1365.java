@@ -54,9 +54,9 @@ public class SmallerNumbersThanCurrent_1365 {
     private int[] fun(int[] nums) {
         int len = nums.length;
         int[] result = new int[len];
-        for (int i = 0;i < len;i++) {
+        for (int i = 0; i < len; i++) {
             int count = 0;
-            for (int j = 0;j < len;j++) {
+            for (int j = 0; j < len; j++) {
                 if (i != j && nums[j] < nums[i]) {
                     count++;
                 }
