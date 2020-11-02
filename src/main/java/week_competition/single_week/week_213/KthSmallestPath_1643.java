@@ -66,10 +66,23 @@ public class KthSmallestPath_1643 {
         Assert.assertEquals("HHVVH", kthSmallestPath(new int[]{2, 3}, 3));
     }
 
+    public String kthSmallestPath(int[] destination, int k) {
+        return fun(destination, k);
+    }
+
+    /**
+     * @return
+     */
+    private String fun2() {
+
+
+        return "";
+    }
+
     /**
      * 内存超出限制
      */
-    public String kthSmallestPath(int[] destination, int k) {
+    public String fun(int[] destination, int k) {
         List<String>[][] arr = new List[destination[0] + 1][destination[1] + 1];
         List<String> temp = new ArrayList<>();
         temp.add("");
