@@ -11,7 +11,8 @@ import java.util.List;
 /**
  * 1643. 第 K 条最小指令
  *
- * Bob 站在单元格 (0, 0) ，想要前往目的地 destination ：(row, column) 。他只能向 右 或向 下 走。你可以为 Bob 提供导航 指令 来帮助他到达目的地 destination 。
+ * Bob 站在单元格 (0, 0) ，想要前往目的地 destination ：(row, column) 。他只能向 右 或向 下 走。
+ * 你可以为 Bob 提供导航 指令 来帮助他到达目的地 destination 。
  *
  * 指令 用字符串表示，其中每个字符：
  *
@@ -67,16 +68,136 @@ public class KthSmallestPath_1643 {
     }
 
     public String kthSmallestPath(int[] destination, int k) {
-        return fun(destination, k);
+        //return fun(destination, k);
+
+        /*result = new ArrayList<>();
+        fun2("",destination[0],destination[1],0,0);
+        Collections.sort(result);
+        if (k - 1 >= result.size()) {
+            return null;
+        } else {
+            return result.get(k - 1);
+        }*/
+
+        return fun3(destination, k);
     }
 
     /**
-     * @return
+     * todo 参考思路： 组合数 这题刚拿到手一看就是二维的回溯法，可是回溯需要遍历所有情况，导致超时严重。 因此这里采用组合数求解： 1："H"和"V"的个数分别为destination[1]和destination[0],记为h,v;
+     * 2：以第一个字符是"H"开头的字符串共有C(h+v-1,h-1); #这里C(n,m)表示组合数 3：比较k和C(h+v-1,h-1)的大小： ------如果k大，则说明以"H"开头的所有答案中均小于k,因此第一个字符为"V",则剩余"V"的数量为v--;
+     * ------如果k不大，则说明第一个字符就是"H",剩余"H"的数量为h--; 4：重复上述2,3过程，直到h==0||v==0;此时剩余的直接加上就行;
+     * <p>
+     * 作者：hello-angel 链接：https://leetcode-cn.com/problems/kth-smallest-instructions/solution/javazu-he-shu-qiu-jie-si-lu-fen-xiang-by-hello-ang/
+     * 来源：力扣（LeetCode） 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
      */
-    private String fun2() {
+    private String fun4(int[] destination, int k) {
+        int rows = destination[0];
+        int cols = destination[1];
+        //字符"H"的数量
+        int h = cols;
+        //字符"V"的数量
+        int v = rows;
+        StringBuffer sb = new StringBuffer();
+        //动态规划求解组合数量，乘法容易溢出
+        int[][] dp = new int[h + v][h];
+        dp[0][0] = 1;
+        for (int i = 1; i < h + v; i++) {
+            dp[i][0] = 1;
+            for (int j = 1; j <= i && j < h; j++) {
+                dp[i][j] = dp[i - 1][j - 1] + dp[i - 1][j];
+            }
+        }
+        //依次求解各个位置的字符
+        while (h > 0 && v > 0) {
+            int low = dp[h + v - 1][h - 1];
+            if (k > low) {
+                sb.append("V");
+                v--;
+                k -= low; //更新k值
+            } else {
+                sb.append("H");
+                h--;
+            }
+        }
+        if (h == 0) {//如果"H"用完,则把剩余位置都是"V"
+            for (int i = 0; i < v; i++) {
+                sb.append("V");
+            }
+        } else {//如果"V"用完,则剩余位置都是"H"
+            for (int i = 0; i < h; i++) {
+                sb.append("H");
+            }
+        }
+        return sb.toString();
+    }
+
+    /**
+     * 超出内存限制
+     */
+    private String fun3(int[] destination, int k) {
+        int row = destination[0];
+        int col = destination[1];
+        List<List<String>> aboveList = new ArrayList<>();
+        List<String> firstRowList = new ArrayList<>();
+        firstRowList.add("");
+        aboveList.add(firstRowList);
+        // 右 H ；下 V
+        for (int i = 1; i <= col; i++) {
+            List<String> tempList = new ArrayList<>();
+            List<String> preList = aboveList.get(i - 1);
+            for (String s : preList) {
+                String str = s + "H";
+                tempList.add(str);
+            }
+            aboveList.add(tempList);
+        }
+        for (int i = 1; i <= row; i++) {
+            List<List<String>> curTemp = new ArrayList<>();
+            for (int j = 0; j <= col; j++) {
+                List<String> curList = new ArrayList<>();
+                // 上面
+                List<String> above = aboveList.get(j);
+                for (String s : above) {
+                    curList.add(s + "V");
+                }
+                // 左侧
+                if (j != 0) {
+                    // 左侧
+                    List<String> leftList = curTemp.get(j - 1);
+                    for (String s : leftList) {
+                        curList.add(s + "H");
+                    }
+                }
+                curTemp.add(curList);
+            }
+            aboveList = curTemp;
+        }
+        List<String> result = aboveList.get(aboveList.size() - 1);
+        Collections.sort(result);
+        if (k - 1 >= result.size()) {
+            return "";
+        } else {
+            return result.get(k - 1);
+        }
+    }
 
 
-        return "";
+    List<String> result;
+
+    /**
+     * 递归超时
+     */
+    private void fun2(String preStr, int dRow, int dCol, int curRow, int curCol) {
+        if (curRow == dRow && curCol == dCol) {
+            result.add(preStr);
+            return;
+        } else if (curRow > dRow || curCol > dCol) {
+            return;
+        }
+        // 向右 H
+        fun2(preStr + "H", dRow, dCol, curRow, curCol + 1);
+        // 向下
+        fun2(preStr + "V", dRow, dCol, curRow + 1, curCol);
     }
 
     /**
