@@ -1,6 +1,6 @@
 package common;
 
-import daily_question.LRUCache;
+import daily_question.daily_question_2020.LRUCache;
 import dynamic_programming.medium.NumMatrix;
 import org.junit.Test;
 
