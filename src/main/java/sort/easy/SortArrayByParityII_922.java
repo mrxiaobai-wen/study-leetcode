@@ -48,4 +48,28 @@ public class SortArrayByParityII_922 {
         }
         return result;
     }
+
+    /**
+     * 原地排序使用双指针
+     * </p>
+     * 这个思路有点想当然了，但是可以再优化一下！！！
+     */
+    private int[] fun2(int[] nums) {
+        int lastIndex = -1;
+        for (int i = 0;i < nums.length;i++) {
+            if (nums[i] % 2 == i % 2) {
+                continue;
+            } else {
+                if (lastIndex == -1) {
+                    lastIndex = i;
+                } else {
+                    int temp = nums[lastIndex];
+                    nums[lastIndex] = nums[i];
+                    nums[i] = temp;
+                    lastIndex = -1;
+                }
+            }
+        }
+        return nums;
+    }
 }
