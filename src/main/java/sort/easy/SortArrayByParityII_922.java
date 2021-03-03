@@ -38,7 +38,7 @@ public class SortArrayByParityII_922 {
         int index1 = 0,index2 = 1;
         int[] result = new int[nums.length];
         for (int i = 0;i < nums.length;i++) {
-            if (nums[i] % 2 != 0) {
+            if (nums[i] % 2 == 0) {
                 result[index1] = nums[i];
                 index1 += 2;
             } else {
