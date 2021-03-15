@@ -1,7 +1,9 @@
 package common;
 
 import daily_question.daily_question_2020.LRUCache;
+import design.medium.FrontMiddleBackQueue;
 import dynamic_programming.medium.NumMatrix;
+import org.junit.Assert;
 import org.junit.Test;
 
 public class TestClass {
@@ -47,5 +49,19 @@ public class TestClass {
         assert cache.get(1) == -1;       // 返回 -1 (未找到)
         assert cache.get(3) == 3;       // 返回  3
         assert cache.get(4) == 4;       // 返回  4
+    }
+
+    @Test
+    public void testFrontMiddleBackQueue() {
+        FrontMiddleBackQueue q = new FrontMiddleBackQueue();
+        q.pushFront(1);   // [1]
+        q.pushBack(2);    // [1, 2]
+        q.pushMiddle(3);  // [1, 3, 2]
+        q.pushMiddle(4);  // [1, 4, 3, 2]
+        assert 1 == q.popFront();     // 返回 1 -> [4, 3, 2]
+        assert 3 == q.popMiddle();    // 返回 3 -> [4, 2]
+        assert 4 == q.popMiddle();    // 返回 4 -> [2]
+        assert 2 == q.popBack();      // 返回 2 -> []
+        q.popFront();     // 返回 -1 -> [] （队列为空）
     }
 }
