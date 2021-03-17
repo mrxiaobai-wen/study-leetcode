@@ -2,6 +2,7 @@ package common;
 
 import daily_question.daily_question_2020.LRUCache;
 import design.medium.FrontMiddleBackQueue;
+import design.medium.MyCircularDeque;
 import design.medium.MyCircularQueue;
 import dynamic_programming.medium.NumMatrix;
 import org.junit.Assert;
@@ -78,5 +79,19 @@ public class TestClass {
         assert true == circularQueue.deQueue(); // 返回 true
         assert true == circularQueue.enQueue(4); // 返回 true
         assert 4 == circularQueue.Rear(); // 返回 4
+    }
+
+    @Test
+    public void testMyCircularDeque() {
+        MyCircularDeque circularDeque = new MyCircularDeque(3); // 设置容量大小为3
+        assert true == circularDeque.insertLast(1);			        // 返回 true
+        assert true == circularDeque.insertLast(2);			        // 返回 true
+        assert true == circularDeque.insertFront(3);			        // 返回 true
+        assert false == circularDeque.insertFront(4);			        // 已经满了，返回 false
+        assert 2 == circularDeque.getRear();  				// 返回 2
+        assert true == circularDeque.isFull();				        // 返回 true
+        assert true == circularDeque.deleteLast();			        // 返回 true
+        assert true == circularDeque.insertFront(4);			        // 返回 true
+        assert 4 == circularDeque.getFront();				// 返回 4
     }
 }
