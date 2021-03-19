@@ -36,11 +36,6 @@ class AllOne {
 
     /** Inserts a new key <Key> with value 1. Or increments an existing key by 1. */
     public void inc(String key) {
-        try {
-            Integer.valueOf(key);
-        } catch (Exception e) {
-            return;
-        }
         if (map.containsKey(key)) {
             List<Node> list = map.get(key);
             Node curNode = list.get(0);
@@ -48,12 +43,12 @@ class AllOne {
             if (list.size() == 0) {
                 map.remove(key);
             }
-            curNode.val++;
+            curNode.val = (Integer.valueOf(curNode.val) + 1) + "";
             List<Node> newList = map.getOrDefault(curNode.val + "",new ArrayList<>());
             newList.add(curNode);
             updateNode(curNode);
         } else {
-            Node newNode = new Node(Integer.valueOf(key));
+            Node newNode = new Node(key);
             List<Node> list = map.getOrDefault(key,new ArrayList<>());
             list.add(newNode);
             map.put(key,list);
@@ -65,11 +60,11 @@ class AllOne {
         if (head == null) {
             head = newNode;
             rear = newNode;
-        } else if (newNode.val <= head.val) {
+        } else if (newNode.val.compareTo(head.val) <= 0) {
             newNode.next = head;
             head.pre = newNode;
             head = newNode;
-        } else if (newNode.val >= rear.val) {
+        } else if (newNode.val.compareTo(rear.val) >= 0) {
             rear.next = newNode;
             newNode.pre = rear;
             rear = newNode;
@@ -126,7 +121,7 @@ class AllOne {
             if (list.size() == 0) {
                 map.remove(key);
             }
-            cur.val--;
+            cur.val = (Integer.valueOf(cur.val) - 1) + "";
             List<Node> newList = map.getOrDefault(cur.val + "",new ArrayList<>());
             newList.add(cur);
             map.put(cur.val + "",newList);
@@ -152,11 +147,11 @@ class AllOne {
 
     private class Node{
 
-        public int val;
+        public String val;
         public Node pre;
         public Node next;
 
-        public Node(int val) {
+        public Node(String val) {
             this.val = val;
         }
     }
