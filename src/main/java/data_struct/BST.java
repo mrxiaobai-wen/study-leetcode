@@ -7,23 +7,6 @@ import common.TreeNode;
  */
 public class BST {
 
-    public static void main(String[] args) {
-        BST bst = new BST();
-        bst.insert(10);
-        bst.insert(6);
-        bst.insert(14);
-        bst.insert(4);
-        bst.insert(8);
-        bst.insert(12);
-        bst.insert(16);
-        bst.insert(17);
-        System.out.println(bst.search(14));
-        System.out.println(bst.remove(14));
-        System.out.println(bst.search(14));
-        System.out.println(bst.search(12));
-        System.out.println(bst.search(16));
-    }
-
     private TreeNode root;
 
     public boolean search(int data) {
