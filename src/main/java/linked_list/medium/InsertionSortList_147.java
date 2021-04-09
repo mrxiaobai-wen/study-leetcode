@@ -32,31 +32,31 @@ import common.ListNode;
 public class InsertionSortList_147 {
 
     public ListNode insertionSortList(ListNode head) {
-        /*ListNode resultHead = null,resultRear = null;
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode resultHead = null,resultRear = null;
         while (head != null) {
             ListNode cur = head;
             head = head.next;
             cur.next = null;
-            if (resultHead == null) {
-                resultHead = cur;
+            if (resultRear == null) {
+                resultHead = resultRear = cur;
+            } else if (resultRear.val <= cur.val) {
+                resultRear.next = cur;
                 resultRear = cur;
             } else if (resultHead.val >= cur.val) {
                 cur.next = resultHead;
                 resultHead = cur;
-            } else if (resultRear.val <= cur.val) {
-                resultRear.next = cur;
-                resultRear = cur;
             } else {
-
-
-
+                ListNode temp = resultHead;
+                while (temp.next.val < cur.val) {
+                    temp = temp.next;
+                }
+                cur.next = temp.next;
+                temp.next = cur;
             }
-
-
         }
-
-
-    }*/
-        return null;
+        return resultHead;
     }
 }
